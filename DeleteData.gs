@@ -1,8 +1,5 @@
 function deleteData() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getRange('4:4').activate();
-  var currentCell = spreadsheet.getCurrentCell();
-  spreadsheet.getSelection().getNextDataRange(SpreadsheetApp.Direction.DOWN).activate();
-  currentCell.activateAsCurrentCell();
-  spreadsheet.getActiveSheet().deleteRows(spreadsheet.getActiveRange().getRow(), spreadsheet.getActiveRange().getNumRows());
+  var ss = SpreadsheetApp.getActive();
+  ss.getRange('A4:G').activate();
+  ss.getActiveSheet().deleteRows(ss.getActiveRange().getRow(), ss.getActiveRange().getNumRows());
 };
