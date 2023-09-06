@@ -1,3 +1,12 @@
+function dropDownChange() {
+  var ss = SpreadsheetApp.getActive();
+  ss.getRange('F4').activate();
+  ss.getCurrentCell().setValue('Successful');
+  ss.getRange('G4').activate();
+  ss.getCurrentCell().setValue('Trial Ended');
+
+};
+
 function formatedCurrentDate(){
   var date = Utilities.formatDate(new Date(),"GMT-5", "MM-dd-yyyy")
   return date;
@@ -5,7 +14,7 @@ function formatedCurrentDate(){
 
 function formatCells(){
   var ss = SpreadsheetApp.getActive();
-  ss.getRange('A4:F4').activate();
+  ss.getRange('A4:G4').activate();
   ss.getActiveRangeList()
   .setFontSize(10)
   .setFontWeight(null)
@@ -15,7 +24,7 @@ function formatCells(){
 
 function formatCommentCell(){
   var ss = SpreadsheetApp.getActive();
-  ss.getRange('G4').activate();
+  ss.getRange('H4').activate();
   ss.getActiveRangeList()
   .setFontSize(10)
   .setFontWeight(null)
