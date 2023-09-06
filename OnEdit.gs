@@ -11,12 +11,12 @@ function onEdit(e) {
   var buttonExport = sheetTimer.getRange(2,3)
   var buttonClear = sheetTimer.getRange(2,5)
 
-  if (sheetName == "Timer" && editRow == 2 && editColumn == 1){
+  if(sheetName == "Timer" && editRow == 2 && editColumn == 1){
     var buttonSS = sheetTimer.getRange(2,1)
     var a1 = sheetTimer.getRange("A1")
     var a1Value = a1.getValue()
 
-    if (a1Value == "START"){
+    if(a1Value == "START"){
       a1.setValue("STOP")
       buttonSS.setBackground("#ff0100")
       buttonSS.setFontColor("red")
@@ -29,7 +29,7 @@ function onEdit(e) {
       copyDropDown();
     }
 
-    if (a1Value == "STOP"){
+    if(a1Value == "STOP"){
       a1.setValue("START")
       buttonSS.setBackground("#01ff00")
       buttonSS.setFontColor("#00ff00")
@@ -39,12 +39,14 @@ function onEdit(e) {
       var e4 = sheetTimer.getRange("E4")
       var e4Value = e4.getValue()
       var configSheet = ss.getSheetByName('Config')
-      var configSheetB2 = configSheet.getRange("B2")
-      var configSheetB2Value = configSheetB2.getValue()
+      var configSheetA2 = configSheet.getRange("A2")
+      var configSheetA2Value = configSheetA2.getValue()
       
-      if (sheetName == "Timer" && e4Value > configSheetB2Value){
+      if (sheetName == "Timer" && e4Value > configSheetA2Value){
         ss.getRange('F4').activate();
         ss.getCurrentCell().setValue('Successful');
+        ss.getRange('G4').activate();
+        ss.getCurrentCell().setValue('Trial Ended');
       }
     }
   }
