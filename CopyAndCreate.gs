@@ -3,7 +3,7 @@ function copyTitle(sheetName) {
   var sheet = ss.getSheetByName(sheetName);
   ss.setActiveSheet(sheet, true);
   ss.getRange('A1').activate();
-  ss.getRange('Timer!A3:G3').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
+  ss.getRange('Timer!A3:H3').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
 };
 
 function copyData(sheetName) {
@@ -12,15 +12,15 @@ function copyData(sheetName) {
 
   if (targetSheet) {
     var timerSheet = ss.getSheetByName('Timer');
-    var timerData = timerSheet.getRange('A4:G' + timerSheet.getLastRow()).getValues();
+    var timerData = timerSheet.getRange('A4:H' + timerSheet.getLastRow()).getValues();
     
-    var targetData = targetSheet.getRange('A2:G' + targetSheet.getLastRow()).getValues();
+    var targetData = targetSheet.getRange('A2:H' + targetSheet.getLastRow()).getValues();
 
-    // Iterate through each row in 'Timer!A4:G'
+    // Iterate through each row in 'Timer!A4:H'
     for (var i = 0; i < timerData.length; i++) {
       var rowExists = false;
 
-      // Check if the current row from 'Timer!A4:G' already exists in 'All Data'
+      // Check if the current row from 'Timer!A4:H' already exists in 'All Data'
       for (var j = 0; j < targetData.length; j++) {
         if (JSON.stringify(timerData[i]) === JSON.stringify(targetData[j])) {
           rowExists = true;
@@ -45,10 +45,13 @@ function copyDropDown() {
   var ss = SpreadsheetApp.getActive();
   ss.setActiveSheet(ss.getSheetByName('Timer'), true);
   ss.getRange('A4').activate();
-  ss.getRange('Config!A1').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
+  ss.getRange('Config!B2').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
   ss.setActiveSheet(ss.getSheetByName('Timer'), true);
   ss.getRange('F4').activate();
-  ss.getRange('Config!B1').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false); 
+  ss.getRange('Config!C2').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
+  ss.setActiveSheet(ss.getSheetByName('Timer'), true);
+  ss.getRange('G4').activate();
+  ss.getRange('Config!D2').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);  
 };
 
 function createNewSheet(newSheetName) {
