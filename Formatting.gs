@@ -1,20 +1,18 @@
-function dropDownChange() {
-  var ss = SpreadsheetApp.getActive();
+function dropDownChange(ss) {
   ss.getRange('F4').activate();
   ss.getCurrentCell().setValue('Successful');
   ss.getRange('G4').activate();
   ss.getCurrentCell().setValue('Trial Ended');
-
 };
 
 function formatedCurrentDate(){
-  var date = Utilities.formatDate(new Date(),"GMT-5", "MM-dd-yyyy")
+  var date = Utilities.formatDate(new Date(),ss.getSpreadsheetTimeZone(), "MM-dd-yyyy")
   return date;
 };
 
-function formatCells(){
-  var ss = SpreadsheetApp.getActive();
-  ss.getRange('A4:G4').activate();
+function formatCells(ss){
+  ss.getRange('A4:H4').activate();
+  ss.getActiveSheet().setRowHeight(4, 21);
   ss.getActiveRangeList()
   .setFontSize(10)
   .setFontWeight(null)
@@ -22,9 +20,8 @@ function formatCells(){
   .setVerticalAlignment('top');
 };
 
-function formatCommentCell(){
-  var ss = SpreadsheetApp.getActive();
-  ss.getRange('H4').activate();
+function formatCommentCell(ss){
+  ss.getRange('I4').activate();
   ss.getActiveRangeList()
   .setFontSize(10)
   .setFontWeight(null)
@@ -33,8 +30,7 @@ function formatCommentCell(){
   .setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP);
 };
 
-function formatCellDate(){
-  var ss = SpreadsheetApp.getActive();
+function formatCellDate(ss){
   ss.getRange('B4').activate();
   ss.getActiveRangeList().setNumberFormat('M/d/yyyy');
   ss.getRange('C4:E4').activate();
@@ -42,8 +38,7 @@ function formatCellDate(){
   
 }
 
-function allDataFormating(sheetName){
-  var ss = SpreadsheetApp.getActive();
+function allDataFormating(ss, sheetName){
   var targetSheet = ss.setActiveSheet(ss.getSheetByName(sheetName), true);
 
   if (targetSheet){
