@@ -1,26 +1,24 @@
-function copyTitle(sheetName) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+function copyTitle(ss, sheetName) {
   var sheet = ss.getSheetByName(sheetName);
   ss.setActiveSheet(sheet, true);
   ss.getRange('A1').activate();
-  ss.getRange('Timer!A3:H3').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
+  ss.getRange('Timer!A3:I3').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
 };
 
-function copyData(sheetName) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+function copyData(ss, sheetName) {
   var targetSheet = ss.getSheetByName(sheetName);
 
   if (targetSheet) {
     var timerSheet = ss.getSheetByName('Timer');
-    var timerData = timerSheet.getRange('A4:H' + timerSheet.getLastRow()).getValues();
+    var timerData = timerSheet.getRange('A4:I' + timerSheet.getLastRow()).getValues();
     
-    var targetData = targetSheet.getRange('A2:H' + targetSheet.getLastRow()).getValues();
+    var targetData = targetSheet.getRange('A2:I' + targetSheet.getLastRow()).getValues();
 
-    // Iterate through each row in 'Timer!A4:H'
+    // Iterate through each row in 'Timer!A4:I'
     for (var i = 0; i < timerData.length; i++) {
       var rowExists = false;
 
-      // Check if the current row from 'Timer!A4:H' already exists in 'All Data'
+      // Check if the current row from 'Timer!A4:I' already exists in 'All Data'
       for (var j = 0; j < targetData.length; j++) {
         if (JSON.stringify(timerData[i]) === JSON.stringify(targetData[j])) {
           rowExists = true;
@@ -34,27 +32,21 @@ function copyData(sheetName) {
       }
     }
   } else {
-    Logger.log("Sheet '" + sheetName + "' not found.");
+    Logger.log("Function copyData: Sheet '" + sheetName + "' not found.");
   }
 }
 
 
 
 
-function copyDropDown() {
-  var ss = SpreadsheetApp.getActive();
+function copyDropDown(ss) {
   ss.setActiveSheet(ss.getSheetByName('Timer'), true);
   ss.getRange('A4').activate();
   ss.getRange('Config!B2').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
-  ss.setActiveSheet(ss.getSheetByName('Timer'), true);
   ss.getRange('F4').activate();
   ss.getRange('Config!C2').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
-  ss.setActiveSheet(ss.getSheetByName('Timer'), true);
   ss.getRange('G4').activate();
-  ss.getRange('Config!D2').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);  
-};
-
-function createNewSheet(newSheetName) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  ss.insertSheet(newSheetName);
+  ss.getRange('Config!D2').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
+  ss.getRange('H4').activate();
+  ss.getRange('Config!E2').copyTo(ss.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);  
 };
