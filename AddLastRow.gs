@@ -1,5 +1,4 @@
-function addLastRow(targetSheetName) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+function addLastRow(ss, targetSheetName) {
   var targetSheet = ss.getSheetByName(targetSheetName);
 
   if (targetSheet) {
